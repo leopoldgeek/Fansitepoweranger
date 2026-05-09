@@ -6,33 +6,34 @@
 
 <style>
 body {
-  font-family: Arial;
   margin: 0;
+  font-family: Arial;
   background: #0b0b0b;
   color: white;
 }
 
 header {
   background: red;
-  padding: 15px;
   text-align: center;
+  padding: 15px;
   font-size: 22px;
   font-weight: bold;
 }
 
 nav {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   background: #111;
 }
 
 nav button {
-  padding: 10px 20px;
   margin: 5px;
+  padding: 10px;
+  border: none;
   cursor: pointer;
   background: #222;
   color: white;
-  border: none;
 }
 
 nav button:hover {
@@ -49,31 +50,31 @@ section {
 }
 
 .comment-box {
-  margin-top: 20px;
   background: #1a1a1a;
-  padding: 15px;
+  padding: 10px;
   border-radius: 10px;
+  margin-top: 15px;
 }
 
 input, textarea {
   width: 100%;
   padding: 10px;
-  margin: 5px 0;
+  margin-top: 5px;
 }
 
 button.send {
   background: red;
+  color: white;
   border: none;
   padding: 10px;
-  color: white;
+  margin-top: 10px;
   cursor: pointer;
 }
 
 .comment {
   background: #222;
-  padding: 10px;
   margin-top: 10px;
-  border-radius: 5px;
+  padding: 10px;
 }
 </style>
 </head>
@@ -83,102 +84,91 @@ button.send {
 <header>⚡ Power Rangers Club des fans ⚡</header>
 
 <nav>
-  <button onclick="showTab('home')">Accueil</button>
-  <button onclick="showTab('actors')">Acteurs</button>
-  <button onclick="showTab('movie')">Mon Film</button>
+<button onclick="show('home')">Accueil</button>
+<button onclick="show('comments')">Commentaires</button>
+<button onclick="show('red')">Rouge</button>
+<button onclick="show('blue')">Bleu</button>
+<button onclick="show('green')">Vert</button>
+<button onclick="show('pink')">Rose</button>
+<button onclick="show('yellow')">Jaune</button>
+<button onclick="show('gold')">Doré</button>
+<button onclick="show('purple')">Violet</button>
+<button onclick="show('movie')">Film</button>
 </nav>
 
 <!-- ACCUEIL -->
 <section id="home" class="active">
+<h2>Bienvenue ⚡</h2>
+<p>Site fan des Power Rangers + NinjaForce project 😏</p>
+</section>
+
+<!-- COMMENTAIRES -->
+<section id="comments">
 
 <h2>💬 Commentaires des fans</h2>
 
 <div class="comment-box">
-  <input id="name" placeholder="Ton pseudo">
-  <textarea id="message" placeholder="Ton message"></textarea>
-  <button class="send" onclick="sendComment()">Envoyer</button>
+<input id="name" placeholder="Pseudo">
+<textarea id="message" placeholder="Commentaire"></textarea>
+<button class="send" onclick="send()">Envoyer</button>
 </div>
 
-<div id="comments"></div>
+<div id="list"></div>
 
 </section>
 
-<!-- ACTEURS -->
-<section id="actors">
-
-<h2>🎭 Acteurs Power Rangers</h2>
-
-<ul>
-  <li><a href="https://en.wikipedia.org/wiki/Jason_David_Frank" target="_blank">Jason David Frank</a></li>
-  <li><a href="https://en.wikipedia.org/wiki/Austin_St._John" target="_blank">Austin St. John</a></li>
-  <li><a href="https://en.wikipedia.org/wiki/Walter_Emanuel_Jones" target="_blank">Walter Emanuel Jones</a></li>
-</ul>
-
-<p>Plus d’acteurs bientôt ajoutés ⚡</p>
-
-</section>
+<!-- RANGERS -->
+<section id="red"><h2>🔴 Ranger Rouge</h2><p>Leader, feu, courage.</p></section>
+<section id="blue"><h2>🔵 Ranger Bleu</h2><p>Calme, stratégie, technologie.</p></section>
+<section id="green"><h2>🟢 Ranger Vert</h2><p>Agilité, vitesse, ninja.</p></section>
+<section id="pink"><h2>🌸 Ranger Rose</h2><p>Énergie, précision, soutien.</p></section>
+<section id="yellow"><h2>🟡 Ranger Jaune</h2><p>Force, vitesse, combat.</p></section>
+<section id="gold"><h2>🟨 Ranger Doré</h2><p>Puissance ultime, rareté.</p></section>
+<section id="purple"><h2>🟣 Ranger Violet</h2><p>Mystère, magie, énergie spéciale.</p></section>
 
 <!-- FILM -->
 <section id="movie">
-
 <h2>🎬 Mon film NinjaForce</h2>
-
-<p>Regarde mon film ici :</p>
-
-<a href="https://youtube.com" target="_blank">
-<button class="send">▶ Voir sur YouTube</button>
-</a>
-
+<p>Bientôt sur YouTube 😏</p>
 </section>
 
-<!-- SUPABASE + JS -->
-<script type="module">
-import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
-
-// 🔥 REMPLACE ICI
-const supabaseUrl = "https://mbbkmqkcqritrjksuojm.supabase.co";
-const supabaseKey = "sb_publishable_uh0wO1pBzcY0aiB_pm8CdQ_6lRatOaB";
-
-const supabase = createClient(supabaseUrl, supabaseKey);
-
-window.showTab = function(tab) {
-  document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
-  document.getElementById(tab).classList.add("active");
+<script>
+function show(id){
+  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
 }
 
-// envoyer commentaire
-window.sendComment = async function() {
-  const name = document.getElementById("name").value;
-  const message = document.getElementById("message").value;
+/* commentaires simples */
+let comments = [];
 
-  if (!name || !message) return;
+function send(){
+  let name = document.getElementById("name");
+  let message = document.getElementById("message");
 
-  await supabase.from("comments").insert([
-    { name, message }
-  ]);
+  if(!name.value || !message.value) return;
 
-  loadComments();
+  comments.unshift({
+    name: name.value,
+    message: message.value
+  });
+
+  name.value = "";
+  message.value = "";
+
+  render();
 }
 
-// charger commentaires
-async function loadComments() {
-  const { data } = await supabase
-    .from("comments")
-    .select("*")
-    .order("id", { ascending: false });
+function render(){
+  let list = document.getElementById("list");
+  list.innerHTML = "";
 
-  const container = document.getElementById("comments");
-  container.innerHTML = "";
-
-  data.forEach(c => {
-    const div = document.createElement("div");
+  comments.forEach(c=>{
+    let div = document.createElement("div");
     div.className = "comment";
-    div.innerHTML = `<b>${c.name}</b><br>${c.message}`;
-    container.appendChild(div);
+    div.innerHTML = "<b>"+c.name+"</b><br>"+c.message;
+    list.appendChild(div);
   });
 }
-
-loadComments();
 </script>
 
 </body>
