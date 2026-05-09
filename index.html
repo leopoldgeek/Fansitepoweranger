@@ -163,44 +163,63 @@ button.send {
 </div>
 </section>
 
-<script>
-function show(id){
+<script type="module">
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+// 🔥 TON SUPABASE
+const supabaseUrl = "https://mbbkmqkcqritrjksuojm.supabase.co";
+const supabaseKey = "sb_publishable_uh0wO1pBzcY0aiB_pm8CdQ_6lRatOaB";
+
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+// 📌 navigation
+window.show = function(id){
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
-}
+};
 
-/* commentaires simples */
-let comments = [];
+// 💬 envoyer commentaire vers Supabase
+window.send = async function(){
 
-function send(){
-  let name = document.getElementById("name");
-  let message = document.getElementById("message");
+  const name = document.getElementById("name");
+  const message = document.getElementById("message");
 
   if(!name.value || !message.value) return;
 
-  comments.unshift({
-    name: name.value,
-    message: message.value
-  });
+  await supabase.from("comments").insert([
+    {
+      name: name.value,
+      message: message.value
+    }
+  ]);
 
-  // ✅ vide les champs après envoi
+  // ✅ vider les champs
   name.value = "";
   message.value = "";
 
-  render();
-}
+  loadComments();
+};
 
-function render(){
-  let list = document.getElementById("list");
+// 📥 charger commentaires
+async function loadComments(){
+
+  const { data } = await supabase
+    .from("comments")
+    .select("*")
+    .order("id", { ascending: false });
+
+  const list = document.getElementById("list");
   list.innerHTML = "";
 
-  comments.forEach(c=>{
-    let div = document.createElement("div");
+  data.forEach(c => {
+    const div = document.createElement("div");
     div.className = "comment";
     div.innerHTML = "<b>"+c.name+"</b><br>"+c.message;
     list.appendChild(div);
   });
 }
+
+loadComments();
 </script>
 
 </body>
