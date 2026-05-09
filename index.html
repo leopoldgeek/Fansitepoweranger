@@ -164,8 +164,75 @@ button.send {
 </div>
 </section>
 
+  <section id="map">
+<h2>🌍 Carte des fans Power Rangers</h2>
+
+<div class="card">
+<input id="fan_name" placeholder="Pseudo">
+<input id="fan_country" placeholder="Pays">
+<input id="fan_city" placeholder="Ville (optionnel)">
+<button onclick="addFan()" class="send">Ajouter sur la carte</button>
+</div>
+
+<div id="fan_list"></div>
+
+<!-- Carte -->
+<div id="mapbox" style="height:400px;margin-top:20px;"></div>
+</section>
+
 <script type="module">
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+  import L from "https://cdn.jsdelivr.net/npm/leaflet@1.9.4/+esm";
+
+let map = L.map('mapbox').setView([20, 0], 2);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: 'Fans Map'
+}).addTo(map);
+
+// 🔥 ajout fan
+window.addFan = async function(){
+
+  const name = document.getElementById("fan_name");
+  const country = document.getElementById("fan_country");
+  const city = document.getElementById("fan_city");
+
+  if(!name.value || !country.value) return;
+
+  await supabase.from("fans").insert([{
+    name: name.value,
+    country: country.value,
+    city: city.value
+  }]);
+
+  name.value = "";
+  country.value = "";
+  city.value = "";
+
+  loadFans();
+};
+
+// 📥 charger fans + afficher sur carte
+async function loadFans(){
+
+  const { data } = await supabase.from("fans").select("*");
+
+  data.forEach(f => {
+
+    // 🌍 position approximative par pays (simple version)
+    let lat = 48.8;
+    let lng = 2.3;
+
+    if(f.country.toLowerCase().includes("france")) { lat = 46; lng = 2; }
+    if(f.country.toLowerCase().includes("usa")) { lat = 38; lng = -97; }
+    if(f.country.toLowerCase().includes("japan")) { lat = 36; lng = 138; }
+
+    L.marker([lat, lng]).addTo(map)
+      .bindPopup(`<b>${f.name}</b><br>${f.city || ""} - ${f.country}`);
+  });
+}
+
+loadFans();
 
 // 🔥 TON SUPABASE
 const supabaseUrl = "https://mbbkmqkcqritrjksuojm.supabase.co";
