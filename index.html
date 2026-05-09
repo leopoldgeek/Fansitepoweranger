@@ -1,454 +1,181 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Fan club Power Rangers : personnages, saisons, fans, commentaires et carte mondiale.">
-<meta name="keywords" content="Power Rangers, fan club, Super Sentai, NinjaForce, Rangers, site fan, pw, power rangers, power ranger, pr, p r, pw, pouvoir, hero, super héro, super hero, super-héro, super-hero">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Power Rangers Fan Club</title>
 
 <style>
-body {margin:0;font-family:Arial;background:#000;color:#fff}
-header{padding:15px;background:red;text-align:center;font-weight:bold}
-nav{display:flex;flex-wrap:wrap;background:#111;justify-content:center}
-nav button{margin:5px;padding:10px;border:0;background:#222;color:#fff;cursor:pointer}
+body{
+margin:0;
+font-family:Arial;
+background:radial-gradient(circle,#0b0b18,#000);
+color:#fff;
+}
+
+header{
+padding:18px;
+text-align:center;
+background:linear-gradient(90deg,red,black,blue);
+font-weight:bold;
+font-size:20px;
+}
+
+nav{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+background:#111;
+}
+
+nav button{
+margin:6px;
+padding:10px 14px;
+border:0;
+cursor:pointer;
+background:#222;
+color:#fff;
+border-radius:10px;
+transition:0.2s;
+}
+
+nav button:hover{
+background:red;
+transform:scale(1.05);
+}
+
 section{display:none;padding:15px}
 .active{display:block}
-.card{background:#111;padding:10px;margin-top:10px}
-.comment{background:#222;padding:8px;margin-top:5px}
-input,textarea{width:100%;margin-top:5px;padding:8px}
-button{margin-top:5px;padding:8px;background:red;color:#fff;border:0}
+
+.card{
+background:#111;
+padding:12px;
+border-radius:12px;
+margin-top:10px;
+}
+
+input,textarea,select{
+width:100%;
+padding:8px;
+margin-top:6px;
+border-radius:8px;
+border:0;
+}
+
+button.action{
+margin-top:8px;
+padding:10px;
+background:red;
+color:white;
+border:0;
+border-radius:10px;
+cursor:pointer;
+}
+
+.comment{background:#222;padding:8px;margin-top:5px;border-radius:8px}
+
+/* QUIZ */
+.quiz-box{background:#111;padding:15px;border-radius:12px;max-width:800px;margin:auto}
+.answer{display:block;width:100%;margin:8px 0;padding:10px;background:#222;color:#fff;border:0;border-radius:10px}
+.answer:hover{background:#444}
+.progress{height:10px;background:#222;border-radius:10px;overflow:hidden}
+.progress-bar{height:100%;width:0;background:linear-gradient(90deg,red,blue)}
+
+.star-card{background:#111;margin-top:10px;padding:10px;border-left:3px solid red;border-radius:10px}
 </style>
+
 </head>
 
 <body>
-
 <header>⚡ POWER RANGERS FAN CLUB ⚡</header>
 
 <nav>
 <button onclick="show('home')">Accueil</button>
 <button onclick="show('comments')">Commentaires</button>
 <button onclick="show('fans')">Fan Map</button>
-<button onclick="show('saison')">Saison Power Rangers ⚡</button>
-<button onclick="show('greatest-stars')">Les start des Power Rangers ⚡⭐</button>
+<button onclick="show('saison')">Saisons</button>
+<button onclick="show('stars')">Stars</button>
+<button onclick="show('quiz')">Quiz ⚡</button>
 </nav>
 
 <!-- HOME -->
+
 <section id="home" class="active">
 <div class="card">
 <h2>Bienvenue ⚡</h2>
-<p>Site fan Power Rangers simple.
-Vous pourrez laisser votre avis sur les power rangers, Je vous invite a regarder la FanMap pour voir les fans du monde.</p>
+<p>Site fan Power Rangers. Explore les saisons, stars, fans et fais le quiz !</p>
 </div>
 </section>
 
 <!-- COMMENTS -->
+
 <section id="comments">
 <div class="card">
 <h3>💬 Commentaires</h3>
 <input id="c_name" placeholder="Pseudo">
 <textarea id="c_msg" placeholder="Message"></textarea>
-<button onclick="addComment()">Envoyer</button>
+<button class="action" onclick="addComment()">Envoyer</button>
 </div>
-
 <div id="comment_list"></div>
 </section>
 
 <!-- FANS -->
+
 <section id="fans">
 <div class="card">
-<h3>🌍 Fan Map (liste)</h3>
+<h3>🌍 Fan Map</h3>
 <input id="f_name" placeholder="Pseudo">
 <input id="f_country" placeholder="Pays">
-<input id="f_city" placeholder="Ville (optionnel)">
-<button onclick="addFan()">Ajouter</button>
-<h4>Cliquer sur les adresse pour ouvrir sur google map.</h4>
+<input id="f_city" placeholder="Ville">
+<button class="action" onclick="addFan()">Ajouter</button>
 </div>
-
 <div id="fan_list"></div>
 </section>
 
-<!--saison-->
+<!-- SAISONS -->
+
 <section id="saison">
-<h1>Regardez les saison power ranger</h1>
-  <h4>1. Mighty Morphin Power Rangers (1993–1996)
-Début de la franchise
-Jason, Zack, Trini, Kimberly, Billy, Tommy</h4>
-<a href="https://www.youtube.com/show/VLPLbt09tWqepBShiQ_Kyte8wlqZ5gOexnvj?sbp=Kgt3VGgyQWozZ1BxSUAB" style="display:inline-block;padding:12px 20px;background:linear-gradient(90deg,red,black,blue);color:white;text-decoration:none;border-radius:10px;font-weight:bold;transition:0.2s;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 0 15px red'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'">
-⚡ Saison sur youtube
-</a>
-  <h4>2. Mighty Morphin Alien Rangers (1996)
-
-Mini-série de transition
-Rangers Aquitiens (Delphine et équipe alien)</h4>
-  <a href="https://www.youtube.com/playlist?list=PLuk2lgPV80lI9XhzreXwFyHCW6LMm6O_o" style="display:inline-block;padding:12px 20px;background:linear-gradient(90deg,red,black,blue);color:white;text-decoration:none;border-radius:10px;font-weight:bold;transition:0.2s;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 0 15px red'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'">
-⚡ Saison sur youtube
-</a>
-  <h4>3. Power Rangers Zeo (1996–1997)
-
-Nouvelle puissance Zeo
-Tommy, Tanya, Rocky, Adam, Kat, Jason (retour temporaire)</h4>
-    <a href="https://www.youtube.com/playlist?list=PLuk2lgPV80lKjNym4LI2x0FXFKzay91vs" style="display:inline-block;padding:12px 20px;background:linear-gradient(90deg,red,black,blue);color:white;text-decoration:none;border-radius:10px;font-weight:bold;transition:0.2s;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 0 15px red'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'">
-⚡ Saison sur youtube
-</a>
-  <h4>4. Power Rangers Turbo (1997–1998)
-
-Thème voitures et vitesse
-TJ, Carlos, Ashley, Cassie, Justin</h4>
-      <a href="https://www.youtube.com/playlist?list=PLuk2lgPV80lKNMjIuKv_piftgtguTInY0" style="display:inline-block;padding:12px 20px;background:linear-gradient(90deg,red,black,blue);color:white;text-decoration:none;border-radius:10px;font-weight:bold;transition:0.2s;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 0 15px red'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'">
-⚡ Saison sur youtube
-</a>
-  <h4>5. Power Rangers in Space (1998–1999)
-
-Arc final de Zordon
-Andros, TJ, Cassie, Carlos, Ashley</h4>
-        <a href="https://www.youtube.com/playlist?list=PLuk2lgPV80lK67bsUOLZc7MRVsy2YT9vm" style="display:inline-block;padding:12px 20px;background:linear-gradient(90deg,red,black,blue);color:white;text-decoration:none;border-radius:10px;font-weight:bold;transition:0.2s;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 0 15px red'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'">
-⚡ Saison sur youtube
-</a>
-  <h4>6. Power Rangers Lost Galaxy (1999)
-
-Première équipe dans l’espace profond
-Leo, Kai, Damon, Kendrix, Maya</h4>
-      <a href="https://www.youtube.com/playlist?list=PLuk2lgPV80lI0CZaVg5Kn6mgieuYsNDW8" style="display:inline-block;padding:12px 20px;background:linear-gradient(90deg,red,black,blue);color:white;text-decoration:none;border-radius:10px;font-weight:bold;transition:0.2s;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 0 15px red'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'">
-⚡ Saison sur youtube
-</a>
-  <h4>7. Power Rangers Lightspeed Rescue (2000)
-
-Équipe de secours gouvernementale
-Carter, Chad, Joel, Kelsey, Dana</h4>
-<a href="https://www.youtube.com/playlist?list=PLuk2lgPV80lKIhyp1YYSD7xLoNOnPQOe2" style="display:inline-block;padding:12px 20px;background:linear-gradient(90deg,red,black,blue);color:white;text-decoration:none;border-radius:10px;font-weight:bold;transition:0.2s;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 0 15px red'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'">
-⚡ Saison sur youtube
-</a>
-  <h4>8. Power Rangers Time Force (2001)
-
-Voyage dans le temps
-Wes, Jen, Trip, Lucas, Katie</h4>
-  <a href="https://www.youtube.com/playlist?list=PL20KF9zm0hJwlFIuuqCtL4QeD0QHZIs9m" style="display:inline-block;padding:12px 20px;background:linear-gradient(90deg,red,black,blue);color:white;text-decoration:none;border-radius:10px;font-weight:bold;transition:0.2s;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 0 15px red'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'">
-⚡ Saison sur youtube
-</a>
-  <h4>9. Power Rangers Wild Force (2002)
-    
-Connexion avec la nature et animaux
-Cole, Taylor, Max, Danny, Alyssa</h4>
-    <a href="https://www.youtube.com/playlist?list=PL20KF9zm0hJz2-3MmqaecP4dWK7tP3cZx" style="display:inline-block;padding:12px 20px;background:linear-gradient(90deg,red,black,blue);color:white;text-decoration:none;border-radius:10px;font-weight:bold;transition:0.2s;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 0 15px red'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'">
-⚡ Saison sur youtube
-</a>
-  <h4>10. Power Rangers Ninja Storm (2003)
-
-Style ninja / école secrète
-Shane, Tori, Dustin</h4>
-  
-    <a href="https://www.youtube.com/playlist?list=PL20KF9zm0hJxMy_mlf3_8i8IijeZMqqQv" style="display:inline-block;padding:12px 20px;background:linear-gradient(90deg,red,black,blue);color:white;text-decoration:none;border-radius:10px;font-weight:bold;transition:0.2s;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 0 15px red'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'">
-⚡ Saison sur youtube
-</a>  
-  <h4>11. Power Rangers Dino Thunder (2004)
-
-Retour de Tommy Oliver
-Conner, Ethan, Kira, Tommy</h4>
-      <a href="https://www.youtube.com/playlist?list=PL20KF9zm0hJwW4-XcuihWDH4ItzVIpwXF" style="display:inline-block;padding:12px 20px;background:linear-gradient(90deg,red,black,blue);color:white;text-decoration:none;border-radius:10px;font-weight:bold;transition:0.2s;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 0 15px red'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'">
-⚡ Saison sur youtube
-</a>
-  <h4>12. Power Rangers S.P.D. (2005)
-
-Police spatiale du futur
-Jack, Sky, Bridge, Z, Syd, Anubis</h4>
-        <a href="https://www.youtube.com/playlist?list=PL20KF9zm0hJxPaJH-txCmYx8irNmXu3-O" style="display:inline-block;padding:12px 20px;background:linear-gradient(90deg,red,black,blue);color:white;text-decoration:none;border-radius:10px;font-weight:bold;transition:0.2s;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 0 15px red'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'">
-⚡ Saison sur youtube
-</a>
-  <h4>13. Power Rangers Mystic Force (2006)
-
-Magie et sorcellerie
-Nick, Vida, Madison, Xander, Chip</h4>
-          <a href="https://www.youtube.com/playlist?list=PL20KF9zm0hJzDE9akuJvXqv8O6Ersy9Fk" style="display:inline-block;padding:12px 20px;background:linear-gradient(90deg,red,black,blue);color:white;text-decoration:none;border-radius:10px;font-weight:bold;transition:0.2s;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 0 15px red'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'">
-⚡ Saison sur youtube
-</a>
-  <h4>14. Power Rangers Operation Overdrive (2007)
-
-Chasse au trésor mondiale
-Mack, Will, Dax, Ronny, Rose</h4>
-            <a href="https://www.youtube.com/playlist?list=PL20KF9zm0hJx3P0_zF0QeOQJev_76-LV-" style="display:inline-block;padding:12px 20px;background:linear-gradient(90deg,red,black,blue);color:white;text-decoration:none;border-radius:10px;font-weight:bold;transition:0.2s;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 0 15px red'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'">
-⚡ Saison sur youtube
-</a>
-  <h4>15. Power Rangers Jungle Fury (2008)
-
-Arts martiaux animaliers
-Casey, Lily, Theo</h4>
-              <a href="https://www.youtube.com/playlist?list=PL20KF9zm0hJxqiTldLjG_VeNvQcSU1PHc" style="display:inline-block;padding:12px 20px;background:linear-gradient(90deg,red,black,blue);color:white;text-decoration:none;border-radius:10px;font-weight:bold;transition:0.2s;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 0 15px red'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'">
-⚡ Saison sur youtube
-</a>
-  <h4>16. Power Rangers RPM (2009)
-
-Monde post-apocalyptique, saison la plus recommandé, au debut un peu ennuyeux mais vers le millieux c'est incroyable.
-Scott, Flynn, Summer, Ziggy, Dillon</h4>
-                <a href="https://www.youtube.com/playlist?list=PL20KF9zm0hJygH0vaVe2-WjLmnbu3JqLk" style="display:inline-block;padding:12px 20px;background:linear-gradient(90deg,red,black,blue);color:white;text-decoration:none;border-radius:10px;font-weight:bold;transition:0.2s;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 0 15px red'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'">
-⚡ Saison sur youtube
-</a>
-  <h4>17. Power Rangers Samurai (2011–2012)
-
-Code samouraï
-Jayden, Kevin, Mia, Mike, Emily</h4>
-                  <a href="https://www.youtube.com/playlist?list=PLyQ-Z9DnZ1ypcQlnWkcu3c9qkxKJE951K" style="display:inline-block;padding:12px 20px;background:linear-gradient(90deg,red,black,blue);color:white;text-decoration:none;border-radius:10px;font-weight:bold;transition:0.2s;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 0 15px red'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'">
-⚡ Saison sur youtube
-</a>
-  <h4>18. Power Rangers Megaforce (2013)
-
-Hommage aux anciennes équipes
-Troy, Jake, Noah, Emma, Gia
-
-19. Power Rangers Super Megaforce (2014)
-
-Pouvoirs de toutes les équipes
-Même équipe + formes anciennes</h4>
-                    <a href="https://www.youtube.com/playlist?list=PLyQ-Z9DnZ1yr1Ws2MdA5y98QQDlq4EIYz" style="display:inline-block;padding:12px 20px;background:linear-gradient(90deg,red,black,blue);color:white;text-decoration:none;border-radius:10px;font-weight:bold;transition:0.2s;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 0 15px red'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'">
-⚡ Saison sur youtube
-</a>
-                      <a href="https://www.youtube.com/playlist?list=PLyQ-Z9DnZ1yqJnP8NTY0VcMQ-QJYTMNsh" style="display:inline-block;padding:12px 20px;background:linear-gradient(90deg,red,black,blue);color:white;text-decoration:none;border-radius:10px;font-weight:bold;transition:0.2s;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 0 15px red'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'">
-⚡ Saison sur youtube
-</a>
-  <h4>20. Power Rangers Dino Charge (2015)
-
-Dinosaures + énergie Energems
-Tyler, Shelby, Chase, Koda, Riley
-
-21. Power Rangers Dino Super Charge (2016)
-
-Suite Dino Charge
-Même équipe + évolution pouvoirs</h4>
-                      <a href="https://www.youtube.com/playlist?list=PLedJCJc5Cuu_mrMQZQmEwh_rbrNuJzOMO" style="display:inline-block;padding:12px 20px;background:linear-gradient(90deg,red,black,blue);color:white;text-decoration:none;border-radius:10px;font-weight:bold;transition:0.2s;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 0 15px red'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'">
-⚡ Saison sur youtube
-</a>
-<h4>22. Power Rangers Ninja Steel (2017)
-
-Tournoi galactique ninja
-Brody, Preston, Calvin, Hayley, Sarah
-
-23. Power Rangers Super Ninja Steel (2018)
-
-Retour des anciens Rangers
-Même équipe + crossover anniversaire</h4>
-                        <a href="https://www.youtube.com/playlist?list=PLPbIz6k3YRPEw3cmgdjTb_3qtYZhEiiIV" style="display:inline-block;padding:12px 20px;background:linear-gradient(90deg,red,black,blue);color:white;text-decoration:none;border-radius:10px;font-weight:bold;transition:0.2s;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 0 15px red'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'">
-⚡ Saison sur youtube
-</a>
-                          <a href="https://www.youtube.com/playlist?list=PLPbIz6k3YRPE_N-PeP7trATg2VGjdtdT-" style="display:inline-block;padding:12px 20px;background:linear-gradient(90deg,red,black,blue);color:white;text-decoration:none;border-radius:10px;font-weight:bold;transition:0.2s;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 0 15px red'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'">
-⚡ Saison sur youtube
-</a>
-  <h4>24. Power Rangers Beast Morphers (2019–2020)
-
-Technologie et Morph-X
-Devon, Ravi, Zoey</h4>
-                            <a href="https://www.youtube.com/playlist?list=PLPbIz6k3YRPECN-TjKhcyusK1bahcH4W8" style="display:inline-block;padding:12px 20px;background:linear-gradient(90deg,red,black,blue);color:white;text-decoration:none;border-radius:10px;font-weight:bold;transition:0.2s;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 0 15px red'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'">
-⚡ Saison sur youtube
-</a>
-  <h4>25. Power Rangers Dino Fury (2021–2022)
-
-Retour dinos + énergie sporix
-Zayto, Ollie, Amelia, Izzy, Javi
-
-26. Power Rangers Cosmic Fury (2023)
-
-Suite directe Dino Fury
-Équipe intergalactique avec Zayto et nouveaux pouvoirs</h4>
-                              <a href="https://www.youtube.com/playlist?list=PLPbIz6k3YRPE7e6S5i2Z6Zm0l1ituGGKr" style="display:inline-block;padding:12px 20px;background:linear-gradient(90deg,red,black,blue);color:white;text-decoration:none;border-radius:10px;font-weight:bold;transition:0.2s;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 0 15px red'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'">
-⚡ Saison sur youtube
-</a>
-                                <a href="https://www.youtube.com/playlist?list=PLPbIz6k3YRPGx4VnvnNH6Ygi_B8DSPhSp" style="display:inline-block;padding:12px 20px;background:linear-gradient(90deg,red,black,blue);color:white;text-decoration:none;border-radius:10px;font-weight:bold;transition:0.2s;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 0 15px red'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'">
-⚡ Saison sur youtube
-</a>
-
-
-  <h3>Toutes ces séries sont adaptées de la franchise japonaise :
-Super Sentai
-(chaque saison Power Rangers correspond à une saison Sentai différente)</h3>
-</section>
-
-  <section id="greatest-stars">
-<h2>⭐ Les Plus Grandes Stars des Power Rangers ⭐</h2>
-<p>Les acteurs les plus iconiques et importants de l’histoire des Power Rangers ⚡</p>
-
-<div class="star-card">
-<h3>🐉 Jason David Frank</h3>
-<p><b>Personnage :</b> Tommy Oliver</p>
-<p><b>Rangers :</b> Vert, Blanc, Rouge Zeo, Rouge Turbo, Noir Dino Thunder</p>
-<p><b>Saisons :</b> Mighty Morphin, Zeo, Turbo, Dino Thunder</p>
-<p><b>Pourquoi c’est une légende :</b> Considéré comme la plus grande star de l’histoire des Power Rangers. Tommy est devenu le personnage préféré de millions de fans dans le monde.</p>
-<p><b>Moment culte :</b> Le Ranger Vert avec la Dragon Dagger 🐉</p>
-</div>
-
-<div class="star-card">
-<h3>🔴 Austin St. John</h3>
-<p><b>Personnage :</b> Jason Lee Scott</p>
-<p><b>Ranger :</b> Ranger Rouge original / Gold Zeo Ranger</p>
-<p><b>Saisons :</b> Mighty Morphin, Zeo</p>
-<p><b>Pourquoi c’est une légende :</b> Premier leader Power Rangers et visage des débuts de la franchise.</p>
-</div>
-
-<div class="star-card">
-<h3>🌸 Amy Jo Johnson</h3>
-<p><b>Personnage :</b> Kimberly Hart</p>
-<p><b>Ranger :</b> Ranger Rose</p>
-<p><b>Saisons :</b> Mighty Morphin</p>
-<p><b>Pourquoi c’est une légende :</b> Une des Rangers les plus populaires de tous les temps.</p>
-</div>
-
-<div class="star-card">
-<h3>⚫ Walter Emanuel Jones</h3>
-<p><b>Personnage :</b> Zack Taylor</p>
-<p><b>Ranger :</b> Ranger Noir</p>
-<p><b>Saisons :</b> Mighty Morphin</p>
-<p><b>Pourquoi c’est une légende :</b> Très aimé grâce à son style cool et ses combats.</p>
-</div>
-
-<div class="star-card">
-<h3>🔵 David Yost</h3>
-<p><b>Personnage :</b> Billy Cranston</p>
-<p><b>Ranger :</b> Ranger Bleu</p>
-<p><b>Saisons :</b> Mighty Morphin</p>
-<p><b>Pourquoi c’est une légende :</b> Le génie technologique de l’équipe et un des personnages les plus appréciés.</p>
-</div>
-
-<div class="star-card">
-<h3>🟡 Thuy Trang</h3>
-<p><b>Personnage :</b> Trini Kwan</p>
-<p><b>Ranger :</b> Ranger Jaune</p>
-<p><b>Saisons :</b> Mighty Morphin</p>
-<p><b>Pourquoi c’est une légende :</b> Ranger originale très respectée par les fans.</p>
-</div>
-
-<div class="star-card">
-<h3>🚀 Christopher Khayman Lee</h3>
-<p><b>Personnage :</b> Andros</p>
-<p><b>Ranger :</b> Ranger Rouge In Space</p>
-<p><b>Saisons :</b> Power Rangers in Space</p>
-<p><b>Pourquoi c’est une légende :</b> Héros d’une des meilleures saisons de la franchise.</p>
-</div>
-
-<div class="star-card">
-<h3>⏳ Jason Faunt</h3>
-<p><b>Personnage :</b> Wes Collins</p>
-<p><b>Ranger :</b> Ranger Rouge Time Force</p>
-<p><b>Saisons :</b> Power Rangers Time Force</p>
-<p><b>Pourquoi c’est une légende :</b> Souvent considéré comme un des meilleurs Red Rangers.</p>
-</div>
-
-<div class="star-card">
-<h3>🦖 James Napier</h3>
-<p><b>Personnage :</b> Conner McKnight</p>
-<p><b>Ranger :</b> Ranger Rouge Dino Thunder</p>
-<p><b>Saisons :</b> Dino Thunder</p>
-<p><b>Pourquoi c’est une légende :</b> Saison culte avec le retour de Tommy Oliver.</p>
-</div>
-
-<div class="star-card">
-<h3>⚡ Eka Darville</h3>
-<p><b>Personnage :</b> Scott Truman</p>
-<p><b>Ranger :</b> Ranger Rouge RPM</p>
-<p><b>Saisons :</b> RPM</p>
-<p><b>Pourquoi c’est une légende :</b> Une des saisons les plus matures et appréciées.</p>
-</div>
-
-<div class="star-card">
-<h3>🥷 Pua Magasiva</h3>
-<p><b>Personnage :</b> Shane Clarke</p>
-<p><b>Ranger :</b> Ranger Rouge Ninja Storm</p>
-<p><b>Saisons :</b> Ninja Storm</p>
-<p><b>Pourquoi c’est une légende :</b> Très aimé des fans des saisons ninja.</p>
-</div>
-
-<div class="star-card">
-<h3>🌌 Russell Curry</h3>
-<p><b>Personnage :</b> Zayto</p>
-<p><b>Ranger :</b> Ranger Rouge Dino Fury / Cosmic Fury</p>
-<p><b>Saisons :</b> Dino Fury, Cosmic Fury</p>
-<p><b>Pourquoi c’est une légende :</b> Visage de la génération la plus récente.</p>
+<div class="card">
+<h2>Saisons Power Rangers ⚡</h2>
+<p>Mighty Morphin → Cosmic Fury</p>
 </div>
 </section>
 
-  <section class="quiz-section">
-  <div class="quiz-box" id="setupScreen">
-    <h2>⚡ Quiz Power Rangers ⚡</h2>
-    <p>Teste tes connaissances sur les Power Rangers 😎</p>
+<!-- STARS -->
 
-    <select id="questionCount">
-      <option value="10">10 questions</option>
-      <option value="20">20 questions</option>
-      <option value="30">30 questions</option>
-      <option value="60">60 questions</option>
-    </select>
-
-    <button onclick="startQuiz()">Commencer le Quiz</button>
-  </div>
-
-  <div class="quiz-box hidden" id="quizScreen">
-    <div class="progress-container">
-      <div id="progressBar"></div>
-    </div>
-
-    <div id="questionNumber"></div>
-    <h3 id="question"></h3>
-    <div id="answers"></div>
-  </div>
-
-  <div class="quiz-box hidden" id="resultScreen">
-    <h2>🏆 Résultat</h2>
-    <p id="scoreText"></p>
-    <h3 id="rankText"></h3>
-    <button onclick="location.reload()">Recommencer</button>
-  </div>
+<section id="stars">
+<div class="card">
+<h2>⭐ Stars Power Rangers</h2>
+<div class="star-card">Jason David Frank - Tommy Oliver</div>
+<div class="star-card">Austin St. John - Jason</div>
+<div class="star-card">Amy Jo Johnson - Kimberly</div>
+</div>
 </section>
 
-<style>
-.quiz-section{
-padding:40px 20px;
-background:linear-gradient(135deg,#0b0b18,#111827,#180b1f);
-font-family:Arial,sans-serif;
-color:white;
-text-align:center;
-}
+<!-- QUIZ -->
 
-.quiz-box{
-max-width:800px;
-margin:auto;
-background:rgba(255,255,255,0.06);
-padding:30px;
-border-radius:25px;
-backdrop-filter:blur(8px);
-box-shadow:0 0 30px rgba(255,0,0,.25);
-}
+<section id="quiz">
+<div class="quiz-box">
+<h2>⚡ Quiz Power Rangers</h2>
+<select id="qcount">
+<option value="10">10</option>
+<option value="20">20</option>
+<option value="30">30</option>
+<option value="40">40</option>
+</select>
+<button class="action" onclick="startQuiz()">Commencer</button>
 
-.hidden{display:none;}
+<div id="quiz_area" style="display:none">
+<div class="progress"><div id="bar" class="progress-bar"></div></div>
+<h3 id="q"></h3>
+<div id="a"></div>
+</div>
 
-button{
-padding:14px 28px;
-border:none;
-border-radius:14px;
-background:linear-gradient(90deg,#ff0000,#0066ff);
-color:white;
-font-size:18px;
-</script>
-<style>
-#greateast-stars{
-padding:20px;
-}
+<h3 id="result"></h3>
+</div>
+</section>
 
-.star-card{
-background:linear-gradient(145deg,#111,#1b1b1b);
-border-left:4px solid red;
-padding:15px;
-margin-top:15px;
-border-radius:12px;
-box-shadow:0 0 15px rgba(255,0,0,0.2);
-transition:0.2s;
-}
-
-.star-card:hover{
-transform:scale(1.02);
-box-shadow:0 0 20px red;
-}
-
-.star-card h3{
-color:#ff4040;
-}
-</style>
 <script type="module">
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
@@ -457,93 +184,82 @@ const supabase = createClient(
 "sb_publishable_uh0wO1pBzcY0aiB_pm8CdQ_6lRatOaB"
 );
 
-/* NAV */
-window.show = (id)=>{
-  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-}
+window.show=(id)=>{
+document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+};
 
-/* 💬 COMMENTS */
-window.addComment = async ()=>{
-  const n = document.getElementById("c_name");
-  const m = document.getElementById("c_msg");
-
-  if(!n.value || !m.value) return;
-
-  await supabase.from("comments").insert([
-    { name:n.value, message:m.value }
-  ]);
-
-  n.value = "";
-  m.value = "";
-
-  loadComments();
-}
+/* COMMENTS */
+window.addComment=async()=>{
+await supabase.from("comments").insert([
+{name:c_name.value,message:c_msg.value}
+]);
+c_name.value="";c_msg.value="";
+loadComments();
+};
 
 async function loadComments(){
-  const { data } = await supabase.from("comments").select("*").order("id",{ascending:false});
-
-  const box = document.getElementById("comment_list");
-  box.innerHTML = "";
-
-  data.forEach(c=>{
-    const d = document.createElement("div");
-    d.className="comment";
-    d.innerHTML = "<b>"+c.name+"</b><br>"+c.message;
-    box.appendChild(d);
-  });
+let {data}=await supabase.from("comments").select("*").order("id",{ascending:false});
+comment_list.innerHTML="";
+data.forEach(c=>{
+comment_list.innerHTML+=`<div class='comment'><b>${c.name}</b><br>${c.message}</div>`;
+});
 }
 
-/* 🌍 FANS */
-window.addFan = async ()=>{
-  const n = document.getElementById("f_name");
-  const c = document.getElementById("f_country");
-  const ci = document.getElementById("f_city");
-
-  if(!n.value || !c.value) return;
-
-  await supabase.from("fans").insert([
-    { name:n.value, country:c.value, city:ci.value }
-  ]);
-
-  n.value="";
-  c.value="";
-  ci.value="";
-
-  loadFans();
-}
+/* FANS */
+window.addFan=async()=>{
+await supabase.from("fans").insert([
+{name:f_name.value,country:f_country.value,city:f_city.value}
+]);
+f_name.value=f_country.value=f_city.value="";
+loadFans();
+};
 
 async function loadFans(){
-  const { data } = await supabase.from("fans").select("*").order("country");
-
-  const box = document.getElementById("fan_list");
-  box.innerHTML = "";
-
-  let last="";
-
-  data.forEach(f=>{
-    if(f.country!==last){
-      last=f.country;
-      const h=document.createElement("h3");
-      h.innerText="🌍 "+last;
-      box.appendChild(h);
-    }
-
-    const d=document.createElement("div");
-    d.className="comment";
-    d.innerHTML="<b>"+f.name+"</b><br>"+(f.city?f.city+", ":"")+f.country;
-
-    d.onclick=()=>{
-      const q=encodeURIComponent((f.city?f.city+" ":"")+f.country);
-      window.open("https://www.google.com/maps/search/?api=1&query="+q,"_blank");
-    };
-
-    box.appendChild(d);
-  });
+let {data}=await supabase.from("fans").select("*").order("country");
+fan_list.innerHTML="";
+let last="";
+data.forEach(f=>{
+if(f.country!==last){fan_list.innerHTML+=`<h3>${f.country}</h3>`;last=f.country;}
+fan_list.innerHTML+=`<div class='comment'>${f.name} - ${f.city||""}</div>`;
+});
 }
 
-loadComments();
-loadFans();
+/* QUIZ SIMPLE */
+let questions=[
+{q:"Qui est le Ranger Vert ?",a:["Tommy","Jason","Billy"],c:0},
+{q:"Première saison ?",a:["Zeo","MMPR","RPM"],c:1},
+{q:"Ranger Rouge Time Force ?",a:["Wes","Cole"],c:0},
+{q:"Univers japonais ?",a:["Sentai","Marvel"],c:0}
+];
+
+let i=0,score=0,quiz=[];
+
+window.startQuiz=()=>{
+let n=parseInt(qcount.value);
+quiz=questions.slice(0,n);
+i=0;score=0;
+quiz_area.style.display="block";
+showQ();
+};
+
+function showQ(){
+if(i>=quiz.length){result.innerText=`Score ${score}/${quiz.length}`;return;}
+let q=quiz[i];
+q.innerText=q.q;
+a.innerHTML="";
+q.a.forEach((x,idx)=>{
+a.innerHTML+=`<button class='answer' onclick='ans(${idx})'>${x}</button>`;
+});
+bar.style.width=(i/quiz.length*100)+"%";
+}
+
+window.ans=(idx)=>{
+if(idx===quiz[i].c)score++;
+i++;showQ();
+};
+
+loadComments();loadFans();
 </script>
 
 </body>
