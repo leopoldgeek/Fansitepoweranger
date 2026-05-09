@@ -363,6 +363,68 @@ Super Sentai
 </div>
 </section>
 
+  <section class="quiz-section">
+  <div class="quiz-box" id="setupScreen">
+    <h2>⚡ Quiz Power Rangers ⚡</h2>
+    <p>Teste tes connaissances sur les Power Rangers 😎</p>
+
+    <select id="questionCount">
+      <option value="10">10 questions</option>
+      <option value="20">20 questions</option>
+      <option value="30">30 questions</option>
+      <option value="60">60 questions</option>
+    </select>
+
+    <button onclick="startQuiz()">Commencer le Quiz</button>
+  </div>
+
+  <div class="quiz-box hidden" id="quizScreen">
+    <div class="progress-container">
+      <div id="progressBar"></div>
+    </div>
+
+    <div id="questionNumber"></div>
+    <h3 id="question"></h3>
+    <div id="answers"></div>
+  </div>
+
+  <div class="quiz-box hidden" id="resultScreen">
+    <h2>🏆 Résultat</h2>
+    <p id="scoreText"></p>
+    <h3 id="rankText"></h3>
+    <button onclick="location.reload()">Recommencer</button>
+  </div>
+</section>
+
+<style>
+.quiz-section{
+padding:40px 20px;
+background:linear-gradient(135deg,#0b0b18,#111827,#180b1f);
+font-family:Arial,sans-serif;
+color:white;
+text-align:center;
+}
+
+.quiz-box{
+max-width:800px;
+margin:auto;
+background:rgba(255,255,255,0.06);
+padding:30px;
+border-radius:25px;
+backdrop-filter:blur(8px);
+box-shadow:0 0 30px rgba(255,0,0,.25);
+}
+
+.hidden{display:none;}
+
+button{
+padding:14px 28px;
+border:none;
+border-radius:14px;
+background:linear-gradient(90deg,#ff0000,#0066ff);
+color:white;
+font-size:18px;
+</script>
 <style>
 #greateast-stars{
 padding:20px;
