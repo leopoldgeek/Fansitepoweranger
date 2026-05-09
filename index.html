@@ -2,23 +2,23 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="google-site-verification" content="kdCY1yC7hXmTR4FvIw1OqoKhn6aTXHmiFO3Iw5wj_l0" />
-<title>Power Rangers Club des fans</title>
+<title>Power Rangers Fan Club</title>
 
 <style>
 body {
   margin: 0;
   font-family: Arial;
-  background: #0b0b0b;
+  background: radial-gradient(circle at top, #1a0000, #000);
   color: white;
 }
 
 header {
-  background: linear-gradient(90deg, red, black);
   text-align: center;
-  padding: 18px;
-  font-size: 22px;
+  padding: 20px;
+  font-size: 26px;
   font-weight: bold;
+  background: linear-gradient(90deg, red, black, blue);
+  box-shadow: 0 0 20px red;
 }
 
 nav {
@@ -31,264 +31,247 @@ nav {
 
 nav button {
   margin: 5px;
-  padding: 10px;
+  padding: 10px 14px;
   border: none;
   cursor: pointer;
   background: #222;
   color: white;
-  border-radius: 6px;
+  border-radius: 8px;
+  transition: 0.2s;
 }
 
 nav button:hover {
   background: red;
+  box-shadow: 0 0 10px red;
 }
 
 section {
   display: none;
   padding: 20px;
+  animation: fade 0.3s ease-in;
 }
 
 .active {
   display: block;
 }
 
+@keyframes fade {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
 .card {
-  background: #1a1a1a;
+  background: rgba(255,255,255,0.05);
   padding: 15px;
-  border-radius: 10px;
+  border-radius: 12px;
   margin-top: 10px;
+  box-shadow: 0 0 10px rgba(255,0,0,0.2);
+  backdrop-filter: blur(5px);
 }
 
 input, textarea {
   width: 100%;
   padding: 10px;
   margin-top: 5px;
-  border-radius: 5px;
+  border-radius: 8px;
   border: none;
+  background: #111;
+  color: white;
 }
 
 button.send {
   background: red;
-  color: white;
   border: none;
   padding: 10px;
-  margin-top: 10px;
+  color: white;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 8px;
+  margin-top: 10px;
 }
 
 .comment {
-  background: #222;
-  margin-top: 10px;
+  background: #111;
   padding: 10px;
-  border-radius: 5px;
+  margin-top: 10px;
+  border-radius: 8px;
+  border-left: 3px solid red;
 }
 </style>
 </head>
 
 <body>
 
-<header>⚡ POWER RANGERS CLUB DES FANS ⚡</header>
+<header>⚡ POWER RANGERS FAN CLUB ⚡</header>
 
 <nav>
 <button onclick="show('home')">Accueil</button>
 <button onclick="show('comments')">Commentaires</button>
-<button onclick="show('actors')">Acteurs</button>
-<button onclick="show('red')">Rouge</button>
-<button onclick="show('blue')">Bleu</button>
-<button onclick="show('green')">Vert</button>
-<button onclick="show('pink')">Rose</button>
-<button onclick="show('yellow')">Jaune</button>
-<button onclick="show('black')">Noir</button>
-<button onclick="show('white')">Blanc</button>
-<button onclick="show('gold')">Doré</button>
-<button onclick="show('purple')">Violet</button>
+<button onclick="show('fanmap')">Fan Map</button>
+<button onclick="show('rangers')">Rangers</button>
 <button onclick="show('movie')">Film</button>
-<button onclick="show('map')">FanMap</button>
 </nav>
 
 <!-- ACCUEIL -->
 <section id="home" class="active">
-<h2>Bienvenue ⚡</h2>
-<p>Bienvenue sur le fan club Power Rangers </p>
+<div class="card">
+<h2>🔥 Bienvenue Ranger</h2>
+<p>Bienvenue sur le fan club officiel Power Rangers / NinjaForce ⚡</p>
+</div>
 </section>
 
 <!-- COMMENTAIRES -->
 <section id="comments">
-<h2>💬 Commentaires des fans</h2>
+<h2>💬 Messages des fans</h2>
 
 <div class="card">
-<input id="name" placeholder="Pseudo">
-<textarea id="message" placeholder="Message"></textarea>
-<button class="send" onclick="send()">Envoyer</button>
+<input id="c_name" placeholder="Pseudo">
+<textarea id="c_msg" placeholder="Message"></textarea>
+<button class="send" onclick="sendComment()">Envoyer</button>
 </div>
 
-<div id="list"></div>
+<div id="comment_list"></div>
 </section>
 
-<!-- ACTEURS -->
-<section id="actors">
-<h2>🎭 Acteurs Power Rangers</h2>
+<!-- FAN MAP -->
+<section id="fanmap">
+<h2>🌍 Fan Map</h2>
 
 <div class="card">
-<p>Organisation par saisons (structure fan wiki)</p>
-<ul>
-<li>Mighty Morphin Power Rangers</li>
-<li>Zeo / Turbo</li>
-<li>In Space / Lost Galaxy</li>
-<li>Time Force / Wild Force</li>
-<li>Dino Thunder / SPD</li>
-<li>Samurai / Dino Fury / Cosmic Fury</li>
-</ul>
+<input id="f_name" placeholder="Pseudo">
+<input id="f_country" placeholder="Pays">
+<input id="f_city" placeholder="Ville (optionnel)">
+<button class="send" onclick="addFan()">Ajouter</button>
 </div>
+
+<div id="fan_list"></div>
 </section>
 
 <!-- RANGERS -->
-<section id="red"><div class="card"><h2>🔴 Ranger Rouge</h2><p>Leader, feu, courage.</p></div></section>
-<section id="blue"><div class="card"><h2>🔵 Ranger Bleu</h2><p>Stratégie, technologie.</p></div></section>
-<section id="green"><div class="card"><h2>🟢 Ranger Vert</h2><p>Agilité, ninja, vitesse.</p></div></section>
-<section id="pink"><div class="card"><h2>🌸 Ranger Rose</h2><p>Précision, énergie.</p></div></section>
-<section id="yellow"><div class="card"><h2>🟡 Ranger Jaune</h2><p>Force et rapidité.</p></div></section>
-<section id="black"><div class="card"><h2>⚫ Ranger Noir</h2><p>Furtif, puissance sombre.</p></div></section>
-<section id="white"><div class="card"><h2>⚪ Ranger Blanc</h2><p>Équilibre, puissance rare.</p></div></section>
-<section id="gold"><div class="card"><h2>🟨 Ranger Doré</h2><p>Puissance ultime.</p></div></section>
-<section id="purple"><div class="card"><h2>🟣 Ranger Violet</h2><p>Mystère, énergie spéciale.</p></div></section>
+<section id="rangers">
+<h2>🦸‍♂️ Les Rangers</h2>
+
+<div class="card">🔴 Ranger Rouge — Leader</div>
+<div class="card">🔵 Ranger Bleu — Intelligence</div>
+<div class="card">🟢 Ranger Vert — Agilité</div>
+<div class="card">🌸 Ranger Rose — Support</div>
+<div class="card">🟡 Ranger Jaune — Force</div>
+<div class="card">⚫ Ranger Noir — Furtif</div>
+<div class="card">⚪ Ranger Blanc — Ultime</div>
+<div class="card">🟨 Ranger Doré — Légendaire</div>
+</section>
 
 <!-- FILM -->
 <section id="movie">
-<h2>🎬 Mon film NinjaForce</h2>
 <div class="card">
-<p>Bientôt sur YouTube 😏🔥</p>
+<h2>🎬 Mon film NinjaForce</h2>
+<p>Bientôt sur YouTube ⚡</p>
 <a href="https://youtube.com" target="_blank">
 <button class="send">Voir le film</button>
 </a>
 </div>
 </section>
 
-  <section id="map">
-<h2>🌍 Carte des fans Power Rangers</h2>
-
-<div class="card">
-<input id="fan_name" placeholder="Pseudo">
-<input id="fan_country" placeholder="Pays">
-<input id="fan_city" placeholder="Ville (optionnel)">
-<button onclick="addFan()" class="send">Ajouter sur la carte</button>
-</div>
-
-<div id="fan_list"></div>
-
-<!-- Carte -->
-<div id="mapbox" style="height:400px;margin-top:20px;"></div>
-</section>
-
 <script type="module">
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
-  import L from "https://cdn.jsdelivr.net/npm/leaflet@1.9.4/+esm";
 
-let map = L.map('mapbox').setView([20, 0], 2);
+const supabase = createClient(
+"https://mbbkmqkcqritrjksuojm.supabase.co",
+"sb_publishable_uh0wO1pBzcY0aiB_pm8CdQ_6lRatOaB"
+);
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: 'Fans Map'
-}).addTo(map);
-
-// 🔥 ajout fan
-window.addFan = async function(){
-
-  const name = document.getElementById("fan_name");
-  const country = document.getElementById("fan_country");
-  const city = document.getElementById("fan_city");
-
-  if(!name.value || !country.value) return;
-
-  await supabase.from("fans").insert([{
-    name: name.value,
-    country: country.value,
-    city: city.value
-  }]);
-
-  name.value = "";
-  country.value = "";
-  city.value = "";
-
-  loadFans();
-};
-
-// 📥 charger fans + afficher sur carte
-async function loadFans(){
-
-  const { data } = await supabase.from("fans").select("*");
-
-  data.forEach(f => {
-
-    // 🌍 position approximative par pays (simple version)
-    let lat = 48.8;
-    let lng = 2.3;
-
-    if(f.country.toLowerCase().includes("france")) { lat = 46; lng = 2; }
-    if(f.country.toLowerCase().includes("usa")) { lat = 38; lng = -97; }
-    if(f.country.toLowerCase().includes("japan")) { lat = 36; lng = 138; }
-
-    L.marker([lat, lng]).addTo(map)
-      .bindPopup(`<b>${f.name}</b><br>${f.city || ""} - ${f.country}`);
-  });
-}
-
-loadFans();
-
-// 🔥 TON SUPABASE
-const supabaseUrl = "https://mbbkmqkcqritrjksuojm.supabase.co";
-const supabaseKey = "sb_publishable_uh0wO1pBzcY0aiB_pm8CdQ_6lRatOaB";
-
-const supabase = createClient(supabaseUrl, supabaseKey);
-
-// 📌 navigation
+// NAV
 window.show = function(id){
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 };
 
-// 💬 envoyer commentaire vers Supabase
-window.send = async function(){
+/* 💬 COMMENTS */
+window.sendComment = async function(){
 
-  const name = document.getElementById("name");
-  const message = document.getElementById("message");
+  const name = document.getElementById("c_name");
+  const msg = document.getElementById("c_msg");
 
-  if(!name.value || !message.value) return;
+  if(!name.value || !msg.value) return;
 
   await supabase.from("comments").insert([
-    {
-      name: name.value,
-      message: message.value
-    }
+    { name: name.value, message: msg.value }
   ]);
 
-  // ✅ vider les champs
   name.value = "";
-  message.value = "";
+  msg.value = "";
 
   loadComments();
 };
 
-// 📥 charger commentaires
 async function loadComments(){
+  const { data } = await supabase.from("comments").select("*").order("id",{ascending:false});
 
-  const { data } = await supabase
-    .from("comments")
-    .select("*")
-    .order("id", { ascending: false });
+  const box = document.getElementById("comment_list");
+  box.innerHTML = "";
 
-  const list = document.getElementById("list");
-  list.innerHTML = "";
+  data.forEach(c=>{
+    const d = document.createElement("div");
+    d.className = "comment";
+    d.innerHTML = "<b>"+c.name+"</b><br>"+c.message;
+    box.appendChild(d);
+  });
+}
 
-  data.forEach(c => {
-    const div = document.createElement("div");
-    div.className = "comment";
-    div.innerHTML = "<b>"+c.name+"</b><br>"+c.message;
-    list.appendChild(div);
+/* 🌍 FAN MAP */
+window.addFan = async function(){
+
+  const n = document.getElementById("f_name");
+  const c = document.getElementById("f_country");
+  const ci = document.getElementById("f_city");
+
+  if(!n.value || !c.value) return;
+
+  await supabase.from("fans").insert([
+    { name:n.value, country:c.value, city:ci.value }
+  ]);
+
+  n.value = "";
+  c.value = "";
+  ci.value = "";
+
+  loadFans();
+};
+
+async function loadFans(){
+
+  const { data } = await supabase.from("fans").select("*").order("country");
+
+  const box = document.getElementById("fan_list");
+  box.innerHTML = "";
+
+  let last = "";
+
+  data.forEach(f=>{
+
+    if(f.country !== last){
+      last = f.country;
+      const h = document.createElement("h3");
+      h.innerText = "🌍 "+last;
+      box.appendChild(h);
+    }
+
+    const d = document.createElement("div");
+    d.className = "comment";
+
+    d.innerHTML = "<b>"+f.name+"</b><br>"+
+      (f.city ? f.city+", " : "")+f.country;
+
+    d.onclick = () => {
+      const q = encodeURIComponent((f.city?f.city+" ":"")+f.country);
+      window.open("https://www.google.com/maps/search/?api=1&query="+q,"_blank");
+    };
+
+    box.appendChild(d);
   });
 }
 
 loadComments();
+loadFans();
 </script>
 
 </body>
