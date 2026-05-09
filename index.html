@@ -13,9 +13,9 @@ body {
 }
 
 header {
-  background: red;
+  background: linear-gradient(90deg, red, black);
   text-align: center;
-  padding: 15px;
+  padding: 18px;
   font-size: 22px;
   font-weight: bold;
 }
@@ -25,6 +25,7 @@ nav {
   flex-wrap: wrap;
   justify-content: center;
   background: #111;
+  padding: 10px;
 }
 
 nav button {
@@ -34,6 +35,7 @@ nav button {
   cursor: pointer;
   background: #222;
   color: white;
+  border-radius: 6px;
 }
 
 nav button:hover {
@@ -49,17 +51,19 @@ section {
   display: block;
 }
 
-.comment-box {
+.card {
   background: #1a1a1a;
-  padding: 10px;
+  padding: 15px;
   border-radius: 10px;
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
 input, textarea {
   width: 100%;
   padding: 10px;
   margin-top: 5px;
+  border-radius: 5px;
+  border: none;
 }
 
 button.send {
@@ -69,28 +73,33 @@ button.send {
   padding: 10px;
   margin-top: 10px;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 .comment {
   background: #222;
   margin-top: 10px;
   padding: 10px;
+  border-radius: 5px;
 }
 </style>
 </head>
 
 <body>
 
-<header>⚡ Power Rangers Club des fans ⚡</header>
+<header>⚡ POWER RANGERS CLUB DES FANS ⚡</header>
 
 <nav>
 <button onclick="show('home')">Accueil</button>
 <button onclick="show('comments')">Commentaires</button>
+<button onclick="show('actors')">Acteurs</button>
 <button onclick="show('red')">Rouge</button>
 <button onclick="show('blue')">Bleu</button>
 <button onclick="show('green')">Vert</button>
 <button onclick="show('pink')">Rose</button>
 <button onclick="show('yellow')">Jaune</button>
+<button onclick="show('black')">Noir</button>
+<button onclick="show('white')">Blanc</button>
 <button onclick="show('gold')">Doré</button>
 <button onclick="show('purple')">Violet</button>
 <button onclick="show('movie')">Film</button>
@@ -99,37 +108,59 @@ button.send {
 <!-- ACCUEIL -->
 <section id="home" class="active">
 <h2>Bienvenue ⚡</h2>
-<p>Site fan des Power Rangers + NinjaForce project 😏</p>
+<p>Bienvenue sur le fan club Power Rangers </p>
 </section>
 
 <!-- COMMENTAIRES -->
 <section id="comments">
-
 <h2>💬 Commentaires des fans</h2>
 
-<div class="comment-box">
+<div class="card">
 <input id="name" placeholder="Pseudo">
-<textarea id="message" placeholder="Commentaire"></textarea>
+<textarea id="message" placeholder="Message"></textarea>
 <button class="send" onclick="send()">Envoyer</button>
 </div>
 
 <div id="list"></div>
+</section>
 
+<!-- ACTEURS -->
+<section id="actors">
+<h2>🎭 Acteurs Power Rangers</h2>
+
+<div class="card">
+<p>Organisation par saisons (structure fan wiki)</p>
+<ul>
+<li>Mighty Morphin Power Rangers</li>
+<li>Zeo / Turbo</li>
+<li>In Space / Lost Galaxy</li>
+<li>Time Force / Wild Force</li>
+<li>Dino Thunder / SPD</li>
+<li>Samurai / Dino Fury / Cosmic Fury</li>
+</ul>
+</div>
 </section>
 
 <!-- RANGERS -->
-<section id="red"><h2>🔴 Ranger Rouge</h2><p>Leader, feu, courage.</p></section>
-<section id="blue"><h2>🔵 Ranger Bleu</h2><p>Calme, stratégie, technologie.</p></section>
-<section id="green"><h2>🟢 Ranger Vert</h2><p>Agilité, vitesse, ninja.</p></section>
-<section id="pink"><h2>🌸 Ranger Rose</h2><p>Énergie, précision, soutien.</p></section>
-<section id="yellow"><h2>🟡 Ranger Jaune</h2><p>Force, vitesse, combat.</p></section>
-<section id="gold"><h2>🟨 Ranger Doré</h2><p>Puissance ultime, rareté.</p></section>
-<section id="purple"><h2>🟣 Ranger Violet</h2><p>Mystère, magie, énergie spéciale.</p></section>
+<section id="red"><div class="card"><h2>🔴 Ranger Rouge</h2><p>Leader, feu, courage.</p></div></section>
+<section id="blue"><div class="card"><h2>🔵 Ranger Bleu</h2><p>Stratégie, technologie.</p></div></section>
+<section id="green"><div class="card"><h2>🟢 Ranger Vert</h2><p>Agilité, ninja, vitesse.</p></div></section>
+<section id="pink"><div class="card"><h2>🌸 Ranger Rose</h2><p>Précision, énergie.</p></div></section>
+<section id="yellow"><div class="card"><h2>🟡 Ranger Jaune</h2><p>Force et rapidité.</p></div></section>
+<section id="black"><div class="card"><h2>⚫ Ranger Noir</h2><p>Furtif, puissance sombre.</p></div></section>
+<section id="white"><div class="card"><h2>⚪ Ranger Blanc</h2><p>Équilibre, puissance rare.</p></div></section>
+<section id="gold"><div class="card"><h2>🟨 Ranger Doré</h2><p>Puissance ultime.</p></div></section>
+<section id="purple"><div class="card"><h2>🟣 Ranger Violet</h2><p>Mystère, énergie spéciale.</p></div></section>
 
 <!-- FILM -->
 <section id="movie">
 <h2>🎬 Mon film NinjaForce</h2>
-<p>Bientôt sur YouTube 😏</p>
+<div class="card">
+<p>Bientôt sur YouTube 😏🔥</p>
+<a href="https://youtube.com" target="_blank">
+<button class="send">Voir le film</button>
+</a>
+</div>
 </section>
 
 <script>
@@ -152,6 +183,7 @@ function send(){
     message: message.value
   });
 
+  // ✅ vide les champs après envoi
   name.value = "";
   message.value = "";
 
