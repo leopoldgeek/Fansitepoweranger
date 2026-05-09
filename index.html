@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Power Rangers Club des fans</title>
+
+<style>
+body {
+  font-family: Arial;
+  margin: 0;
+  background: #0b0b0b;
+  color: white;
+}
+
+header {
+  background: red;
+  padding: 15px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  background: #111;
+}
+
+nav button {
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+  background: #222;
+  color: white;
+  border: none;
+}
+
+nav button:hover {
+  background: red;
+}
+
+section {
+  display: none;
+  padding: 20px;
+}
+
+.active {
+  display: block;
+}
+
+.comment-box {
+  margin-top: 20px;
+  background: #1a1a1a;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+}
+
+button.send {
+  background: red;
+  border: none;
+  padding: 10px;
+  color: white;
+  cursor: pointer;
+}
+
+.comment {
+  background: #222;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+</style>
+</head>
+
+<body>
+
+<header>⚡ Power Rangers Club des fans ⚡</header>
+
+<nav>
+  <button onclick="showTab('home')">Accueil</button>
+  <button onclick="showTab('actors')">Acteurs</button>
+  <button onclick="showTab('movie')">Mon Film</button>
+</nav>
+
+<!-- ACCUEIL -->
+<section id="home" class="active">
+
+<h2>💬 Commentaires des fans</h2>
+
+<div class="comment-box">
+  <input id="name" placeholder="Ton pseudo">
+  <textarea id="message" placeholder="Ton message"></textarea>
+  <button class="send" onclick="sendComment()">Envoyer</button>
+</div>
+
+<div id="comments"></div>
+
+</section>
+
+<!-- ACTEURS -->
+<section id="actors">
+
+<h2>🎭 Acteurs Power Rangers</h2>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Jason_David_Frank" target="_blank">Jason David Frank</a></li>
+  <li><a href="https://en.wikipedia.org/wiki/Austin_St._John" target="_blank">Austin St. John</a></li>
+  <li><a href="https://en.wikipedia.org/wiki/Walter_Emanuel_Jones" target="_blank">Walter Emanuel Jones</a></li>
+</ul>
+
+<p>Plus d’acteurs bientôt ajoutés ⚡</p>
+
+</section>
+
+<!-- FILM -->
+<section id="movie">
+
+<h2>🎬 Mon film NinjaForce</h2>
+
+<p>Regarde mon film ici :</p>
+
+<a href="https://youtube.com" target="_blank">
+<button class="send">▶ Voir sur YouTube</button>
+</a>
+
+</section>
+
+<!-- SUPABASE + JS -->
+<script type="module">
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+// 🔥 REMPLACE ICI
+const supabaseUrl = "TON_SUPABASE_URL";
+const supabaseKey = "TON_SUPABASE_KEY";
+
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+window.showTab = function(tab) {
+  document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
+  document.getElementById(tab).classList.add("active");
+}
+
+// envoyer commentaire
+window.sendComment = async function() {
+  const name = document.getElementById("name").value;
+  const message = document.getElementById("message").value;
+
+  if (!name || !message) return;
+
+  await supabase.from("comments").insert([
+    { name, message }
+  ]);
+
+  loadComments();
+}
+
+// charger commentaires
+async function loadComments() {
+  const { data } = await supabase
+    .from("comments")
+    .select("*")
+    .order("id", { ascending: false });
+
+  const container = document.getElementById("comments");
+  container.innerHTML = "";
+
+  data.forEach(c => {
+    const div = document.createElement("div");
+    div.className = "comment";
+    div.innerHTML = `<b>${c.name}</b><br>${c.message}`;
+    container.appendChild(div);
+  });
+}
+
+loadComments();
+</script>
+
+</body>
+</html>
