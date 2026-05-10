@@ -10,16 +10,16 @@
 body{
 margin:0;
 font-family:Arial;
-background:radial-gradient(circle,#0b0b18,#000);
+background:#000;
 color:#fff;
 }
 
 header{
-padding:20px;
+padding:18px;
 text-align:center;
 background:linear-gradient(90deg,red,black,blue);
-font-size:22px;
 font-weight:bold;
+font-size:22px;
 }
 
 nav{
@@ -39,8 +39,8 @@ background:#222;
 color:#fff;
 border-radius:10px;
 cursor:pointer;
-transition:0.2s;
 }
+
 nav button:hover{background:red;transform:scale(1.05)}
 
 section{display:none;padding:15px}
@@ -74,15 +74,47 @@ cursor:pointer;
 .comment{background:#222;padding:8px;margin-top:5px;border-radius:8px}
 
 /* QUIZ */
-.quiz-box{background:#111;padding:15px;border-radius:12px;max-width:800px;margin:auto}
-.answer{display:block;width:100%;margin:8px 0;padding:10px;background:#222;border:0;color:#fff;border-radius:10px}
+.quiz-box{
+background:#111;
+padding:15px;
+border-radius:12px;
+max-width:800px;
+margin:auto;
+}
+
+.answer{
+display:block;
+width:100%;
+margin:8px 0;
+padding:10px;
+background:#222;
+color:#fff;
+border:0;
+border-radius:10px;
+cursor:pointer;
+}
 .answer:hover{background:#444}
-.progress{height:10px;background:#222;border-radius:10px;overflow:hidden}
-.progress-bar{height:100%;width:0;background:linear-gradient(90deg,red,blue)}
 
-.star-card{background:#111;margin-top:10px;padding:10px;border-left:3px solid red;border-radius:10px}
+.progress{
+height:10px;
+background:#222;
+border-radius:10px;
+overflow:hidden;
+}
 
-.saison a{display:inline-block;margin:6px 0;padding:10px;background:linear-gradient(90deg,red,black,blue);color:#fff;text-decoration:none;border-radius:10px}
+.progress-bar{
+height:100%;
+width:0%;
+background:linear-gradient(90deg,red,blue);
+}
+
+.star-card{
+background:#111;
+padding:10px;
+margin-top:10px;
+border-left:3px solid red;
+border-radius:10px;
+}
 </style>
 
 </head>
@@ -105,7 +137,7 @@ cursor:pointer;
 <section id="home" class="active">
 <div class="card">
 <h2>Bienvenue ⚡</h2>
-<p>Site fan Power Rangers complet : saisons, stars, quiz, fans et commentaires.</p>
+<p>Site fan Power Rangers : saisons, stars, fans, commentaires et quiz.</p>
 </div>
 </section>
 
@@ -134,79 +166,12 @@ cursor:pointer;
 <div id="fan_list"></div>
 </section>
 
-<!-- SAISONS COMPLETE -->
+<!-- SAISONS -->
 
-<section id="saison" class="saison">
+<section id="saison">
 <div class="card">
-<h2>⚡ Toutes les saisons Power Rangers</h2>
-<p>Clique pour regarder les saisons sur YouTube 🔥</p>
-
-<h3>1. Mighty Morphin Power Rangers</h3>
-<a target="_blank" href="https://www.youtube.com/results?search_query=Mighty+Morphin+Power+Rangers+full+episodes">Voir saison</a>
-
-<h3>2. Zeo</h3>
-<a target="_blank" href="https://www.youtube.com/results?search_query=Power+Rangers+Zeo+full+episodes">Voir saison</a>
-
-<h3>3. Turbo</h3>
-<a target="_blank" href="https://www.youtube.com/results?search_query=Power+Rangers+Turbo+full+episodes">Voir saison</a>
-
-<h3>4. In Space</h3>
-<a target="_blank" href="https://www.youtube.com/results?search_query=Power+Rangers+In+Space+full+episodes">Voir saison</a>
-
-<h3>5. Lost Galaxy</h3>
-<a target="_blank" href="https://www.youtube.com/results?search_query=Power+Rangers+Lost+Galaxy+full+episodes">Voir saison</a>
-
-<h3>6. Lightspeed Rescue</h3>
-<a target="_blank" href="https://www.youtube.com/results?search_query=Power+Rangers+Lightspeed+Rescue+full+episodes">Voir saison</a>
-
-<h3>7. Time Force</h3>
-<a target="_blank" href="https://www.youtube.com/results?search_query=Power+Rangers+Time+Force+full+episodes">Voir saison</a>
-
-<h3>8. Wild Force</h3>
-<a target="_blank" href="https://www.youtube.com/results?search_query=Power+Rangers+Wild+Force+full+episodes">Voir saison</a>
-
-<h3>9. Ninja Storm</h3>
-<a target="_blank" href="https://www.youtube.com/results?search_query=Power+Rangers+Ninja+Storm+full+episodes">Voir saison</a>
-
-<h3>10. Dino Thunder</h3>
-<a target="_blank" href="https://www.youtube.com/results?search_query=Power+Rangers+Dino+Thunder+full+episodes">Voir saison</a>
-
-<h3>11. SPD</h3>
-<a target="_blank" href="https://www.youtube.com/results?search_query=Power+Rangers+SPD+full+episodes">Voir saison</a>
-
-<h3>12. Mystic Force</h3>
-<a target="_blank" href="https://www.youtube.com/results?search_query=Power+Rangers+Mystic+Force+full+episodes">Voir saison</a>
-
-<h3>13. Operation Overdrive</h3>
-<a target="_blank" href="https://www.youtube.com/results?search_query=Power+Rangers+Operation+Overdrive+full+episodes">Voir saison</a>
-
-<h3>14. Jungle Fury</h3>
-<a target="_blank" href="https://www.youtube.com/results?search_query=Power+Rangers+Jungle+Fury+full+episodes">Voir saison</a>
-
-<h3>15. RPM</h3>
-<a target="_blank" href="https://www.youtube.com/results?search_query=Power+Rangers+RPM+full+episodes">Voir saison</a>
-
-<h3>16. Samurai</h3>
-<a target="_blank" href="https://www.youtube.com/results?search_query=Power+Rangers+Samurai+full+episodes">Voir saison</a>
-
-<h3>17. Megaforce</h3>
-<a target="_blank" href="https://www.youtube.com/results?search_query=Power+Rangers+Megaforce+full+episodes">Voir saison</a>
-
-<h3>18. Dino Charge</h3>
-<a target="_blank" href="https://www.youtube.com/results?search_query=Power+Rangers+Dino+Charge+full+episodes">Voir saison</a>
-
-<h3>19. Ninja Steel</h3>
-<a target="_blank" href="https://www.youtube.com/results?search_query=Power+Rangers+Ninja+Steel+full+episodes">Voir saison</a>
-
-<h3>20. Beast Morphers</h3>
-<a target="_blank" href="https://www.youtube.com/results?search_query=Power+Rangers+Beast+Morphers+full+episodes">Voir saison</a>
-
-<h3>21. Dino Fury</h3>
-<a target="_blank" href="https://www.youtube.com/results?search_query=Power+Rangers+Dino+Fury+full+episodes">Voir saison</a>
-
-<h3>22. Cosmic Fury</h3>
-<a target="_blank" href="https://www.youtube.com/results?search_query=Power+Rangers+Cosmic+Fury+full+episodes">Voir saison</a>
-
+<h2>⚡ Saisons Power Rangers</h2>
+<p>Ajoute ici tes liens YouTube</p>
 </div>
 </section>
 
@@ -226,12 +191,13 @@ cursor:pointer;
 <section id="quiz">
 <div class="quiz-box">
 <h2>⚡ Quiz Power Rangers</h2>
+
 <select id="qcount">
-<option value="10">10</option>
-<option value="20">20</option>
-<option value="30">30</option>
-<option value="40">40</option>
+<option value="10">10 questions</option>
+<option value="20">20 questions</option>
+<option value="30">30 questions</option>
 </select>
+
 <button class="action" onclick="startQuiz()">Commencer</button>
 
 <div id="quiz_area" style="display:none">
@@ -244,55 +210,17 @@ cursor:pointer;
 </div>
 </section>
 
-<script type="module">
-import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
-
-const supabase = createClient(
-"https://mbbkmqkcqritrjksuojm.supabase.co",
-"sb_publishable_uh0wO1pBzcY0aiB_pm8CdQ_6lRatOaB"
-);
-
+<script>
 window.show=(id)=>{
-document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
-document.getElementById(id).classList.add("active");
-}
+document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+};
 
-/* COMMENTS */
-window.addComment=async()=>{
-await supabase.from("comments").insert([{name:c_name.value,message:c_msg.value}]);
-c_name.value="";c_msg.value="";
-loadComments();
-}
-
-async function loadComments(){
-let {data}=await supabase.from("comments").select("*").order("id",{ascending:false});
-comment_list.innerHTML="";
-data.forEach(c=>comment_list.innerHTML+=`<div class='comment'><b>${c.name}</b><br>${c.message}</div>`);
-}
-
-/* FANS */
-window.addFan=async()=>{
-await supabase.from("fans").insert([{name:f_name.value,country:f_country.value,city:f_city.value}]);
-f_name.value=f_country.value=f_city.value="";
-loadFans();
-}
-
-async function loadFans(){
-let {data}=await supabase.from("fans").select("*").order("country");
-fan_list.innerHTML="";
-let last="";
-data.forEach(f=>{
-if(f.country!==last){fan_list.innerHTML+=`<h3>${f.country}</h3>`;last=f.country;}
-fan_list.innerHTML+=`<div class='comment'>${f.name} - ${f.city||""}</div>`;
-});
-}
-
-/* QUIZ SIMPLE */
+/* QUIZ */
 let questions=[
 {q:"Qui est le Ranger Vert ?",a:["Tommy","Jason","Billy"],c:0},
-{q:"Première saison ?",a:["Zeo","MMPR","RPM"],c:1},
-{q:"Ranger Rouge Time Force ?",a:["Wes","Cole"],c:0},
-{q:"Univers Sentai ?",a:["Oui","Non"],c:0}
+{q:"Première saison ?",a:["Zeo","Mighty Morphin","RPM"],c:1},
+{q:"Ranger Rouge Time Force ?",a:["Wes","Cole","Leo"],c:0}
 ];
 
 let i=0,score=0,quiz=[];
@@ -303,23 +231,27 @@ quiz=questions.slice(0,n);
 i=0;score=0;
 quiz_area.style.display="block";
 showQ();
-}
+};
 
 function showQ(){
-if(i>=quiz.length){result.innerText=`Score ${score}/${quiz.length}`;return;}
+if(i>=quiz.length){
+result.innerText=`Score ${score}/${quiz.length}`;
+return;
+}
 let q=quiz[i];
-q.innerText=q.q;
+document.getElementById('q').innerText=q.q;
+let a=document.getElementById('a');
 a.innerHTML="";
-q.a.forEach((x,idx)=>a.innerHTML+=`<button class='answer' onclick='ans(${idx})'>${x}</button>`);
-bar.style.width=(i/quiz.length*100)+"%";
+q.a.forEach((x,idx)=>{
+a.innerHTML+=`<button class='answer' onclick='ans(${idx})'>${x}</button>`;
+});
+document.getElementById('bar').style.width=(i/quiz.length*100)+"%";
 }
 
 window.ans=(idx)=>{
 if(idx===quiz[i].c)score++;
 i++;showQ();
-}
-
-loadComments();loadFans();
+};
 </script>
 
 </body>
