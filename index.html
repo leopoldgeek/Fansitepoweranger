@@ -34,6 +34,8 @@ button{margin-top:5px;padding:8px;background:red;color:#fff;border:0}
 <button onclick="show('fans')">Fan Map</button>
 <button onclick="show('saison')">Saison Power Rangers ⚡</button>
 <button onclick="show('greatest-stars')">Les start des Power Rangers ⚡⭐</button>
+<button onclick="show('quel-ranger')">Quel est ton power rangers⚡</button>
+<button onclick="show('quiz-section')">Power Quizz⚡</button>
 <a href="https://www.youtube.com/results?search_query=musique+power+rangers" target="_blank" style="display:inline-block;padding:12px 20px;background:linear-gradient(90deg,red,blue);color:white;text-decoration:none;border-radius:12px;font-weight:bold;transition:0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">⚡ En avant la musique</a>
 </nav>
 
@@ -72,6 +74,249 @@ Vous pourrez laisser votre avis sur les power rangers, Je vous invite a regarder
 <div id="fan_list"></div>
 </section>
 
+  <section id="quel-ranger">
+
+<div style="max-width:900px;margin:auto;background:rgba(10,10,10,.95);padding:25px;border-radius:25px;text-align:center;box-shadow:0 0 25px rgba(255,0,0,.35);border:2px solid rgba(255,255,255,.1);">
+
+<h1 style="font-size:35px;">⚡ Quel Power Ranger es-tu ? ⚡</h1>
+<p>Réponds aux questions et découvre ton Ranger 😎</p>
+
+<!-- QUIZ -->
+<div id="quiz-box">
+
+<div style="height:12px;background:#222;border-radius:20px;overflow:hidden;margin-bottom:20px;">
+<div id="progressBar" style="height:100%;width:0%;background:linear-gradient(90deg,red,blue);transition:.3s;"></div>
+</div>
+
+<h2 id="question" style="margin-bottom:20px;"></h2>
+
+<div id="answers"></div>
+
+</div>
+
+<!-- RESULT -->
+<div id="result-box" style="display:none;">
+
+<h2>🏆 Ton Ranger est :</h2>
+
+<h1 id="result-ranger" style="font-size:45px;"></h1>
+
+<p id="result-desc" style="font-size:20px;"></p>
+
+<button onclick="restartRangerQuiz()"
+style="
+padding:14px 25px;
+background:linear-gradient(90deg,red,blue);
+border:none;
+border-radius:15px;
+color:white;
+font-size:18px;
+cursor:pointer;
+margin-top:20px;
+">
+🔄 Recommencer
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+const rangerQuestions = [
+
+{
+question:"Tu préfères quoi ?",
+answers:[
+{text:"🔥 Diriger une équipe", ranger:"red"},
+{text:"🧠 Inventer des technologies", ranger:"blue"},
+{text:"😎 Être mystérieux", ranger:"green"},
+{text:"💖 Aider les autres", ranger:"pink"},
+{text:"⚡ Bouger vite", ranger:"yellow"},
+{text:"💪 Être ultra fort", ranger:"black"},
+{text:"🤍 Être sage", ranger:"white"},
+{text:"✨ Être légendaire", ranger:"gold"},
+{text:"🔮 Être unique", ranger:"purple"},
+{text:"⚙ Futuriste", ranger:"silver"},
+{text:"🔥 Créatif", ranger:"orange"}
+]
+},
+
+{
+question:"Ton pouvoir idéal ?",
+answers:[
+{text:"⚔ Épée légendaire", ranger:"red"},
+{text:"🤖 Gadgets high-tech", ranger:"blue"},
+{text:"🐉 Pouvoir secret", ranger:"green"},
+{text:"✨ Magie", ranger:"pink"},
+{text:"🐆 Super vitesse", ranger:"yellow"},
+{text:"🛡 Force immense", ranger:"black"},
+{text:"☁ Énergie pure", ranger:"white"},
+{text:"👑 Pouvoir ultime", ranger:"gold"},
+{text:"🌌 Énergie cosmique", ranger:"purple"},
+{text:"🚀 Technologie du futur", ranger:"silver"},
+{text:"🌋 Énergie explosive", ranger:"orange"}
+]
+},
+
+{
+question:"Tes amis te décrivent comment ?",
+answers:[
+{text:"🔥 Courageux", ranger:"red"},
+{text:"🧠 Intelligent", ranger:"blue"},
+{text:"😎 Cool", ranger:"green"},
+{text:"💖 Gentil", ranger:"pink"},
+{text:"⚡ Énergique", ranger:"yellow"},
+{text:"💪 Protecteur", ranger:"black"},
+{text:"🤍 Calme", ranger:"white"},
+{text:"✨ Impressionnant", ranger:"gold"},
+{text:"🔮 Différent", ranger:"purple"},
+{text:"⚙ Moderne", ranger:"silver"},
+{text:"🔥 Fun", ranger:"orange"}
+]
+},
+
+{
+question:"Quel style de Ranger tu préfères ?",
+answers:[
+{text:"🔥 Leader héroïque", ranger:"red"},
+{text:"🔵 Stratège", ranger:"blue"},
+{text:"🟢 Ranger légendaire", ranger:"green"},
+{text:"🩷 Ranger magique", ranger:"pink"},
+{text:"🟡 Ranger rapide", ranger:"yellow"},
+{text:"⚫ Ranger puissant", ranger:"black"},
+{text:"⚪ Ranger sage", ranger:"white"},
+{text:"🟨 Ranger rare", ranger:"gold"},
+{text:"🟣 Ranger mystérieux", ranger:"purple"},
+{text:"⚙ Ranger techno", ranger:"silver"},
+{text:"🟠 Ranger explosif", ranger:"orange"}
+]
+}
+
+];
+
+let rangerScores = {
+red:0,
+blue:0,
+green:0,
+pink:0,
+yellow:0,
+black:0,
+white:0,
+gold:0,
+purple:0,
+silver:0,
+orange:0
+};
+
+let currentQuestion = 0;
+
+function loadQuestion(){
+
+if(currentQuestion >= rangerQuestions.length){
+showResult();
+return;
+}
+
+document.getElementById("progressBar").style.width =
+((currentQuestion / rangerQuestions.length) * 100) + "%";
+
+const q = rangerQuestions[currentQuestion];
+
+document.getElementById("question").innerText = q.question;
+
+const answersDiv = document.getElementById("answers");
+answersDiv.innerHTML = "";
+
+q.answers.forEach(answer=>{
+
+answersDiv.innerHTML += `
+<button onclick="selectAnswer('${answer.ranger}')"
+style="
+display:block;
+width:100%;
+margin:10px 0;
+padding:16px;
+border:none;
+border-radius:15px;
+background:linear-gradient(90deg,#111,#222);
+color:white;
+font-size:17px;
+cursor:pointer;
+transition:.2s;
+"
+onmouseover="this.style.transform='scale(1.03)';this.style.boxShadow='0 0 15px red'"
+onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'"
+>
+${answer.text}
+</button>
+`;
+
+});
+
+}
+
+function selectAnswer(ranger){
+rangerScores[ranger]++;
+currentQuestion++;
+loadQuestion();
+}
+
+function showResult(){
+
+document.getElementById("quiz-box").style.display="none";
+document.getElementById("result-box").style.display="block";
+
+let best = Object.keys(rangerScores).reduce((a,b)=>
+rangerScores[a] > rangerScores[b] ? a : b
+);
+
+const rangerData = {
+
+red:{name:"🔴 Ranger Rouge",desc:"Leader courageux et protecteur ⚔"},
+blue:{name:"🔵 Ranger Bleu",desc:"Le cerveau de l’équipe 🧠"},
+green:{name:"🟢 Ranger Vert",desc:"Mystérieux et stylé 😎"},
+pink:{name:"🩷 Ranger Rose",desc:"Grand cœur et courage 💖"},
+yellow:{name:"🟡 Ranger Jaune",desc:"Rapide et énergique ⚡"},
+black:{name:"⚫ Ranger Noir",desc:"Fort et protecteur 💪"},
+white:{name:"⚪ Ranger Blanc",desc:"Sage et équilibré 🤍"},
+gold:{name:"🟨 Ranger Doré",desc:"Rare et ultra puissant ✨"},
+purple:{name:"🟣 Ranger Violet",desc:"Unique et mystérieux 🔮"},
+silver:{name:"⚪ Ranger Argent",desc:"Futuriste et impressionnant ⚙"},
+orange:{name:"🟠 Ranger Orange",desc:"Créatif et plein d’énergie 🔥"}
+
+};
+
+document.getElementById("result-ranger").innerText =
+rangerData[best].name;
+
+document.getElementById("result-desc").innerText =
+rangerData[best].desc;
+
+document.getElementById("progressBar").style.width = "100%";
+}
+
+function restartRangerQuiz(){
+
+currentQuestion = 0;
+
+for(let key in rangerScores){
+rangerScores[key]=0;
+}
+
+document.getElementById("quiz-box").style.display="block";
+document.getElementById("result-box").style.display="none";
+
+loadQuestion();
+
+}
+
+loadQuestion();
+
+</script>
+
+</section>
+  
 <!--saison-->
 <section id="saison">
 <h1>Regardez les saison power ranger</h1>
@@ -549,6 +794,9 @@ async function loadFans(){
 loadComments();
 loadFans();
 </script>
-
+<footer>
+  <h4>Hommage à Jason David Frank qui a joué Tommy Oliver dans les saisons Power Rangers Mighty Morphin, Zeo, Turbo, Dino Thunder </h4>
+  <h6>Bonin&Co - SpaceGeek©</h6>
+</footer>
 </body>
 </html>
